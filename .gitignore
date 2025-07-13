@@ -1,0 +1,68 @@
+# Python
+venv/
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+
+# Django specific
+db.sqlite3
+*.log
+
+# Django migrations
+*/migrations/
+!*/migrations/__init__.py
+
+# Environment Variables
+.env
+backend/.env
+frontend/.env
+
+# React / Node
+frontend/node_modules/
+**/node_modules/
+frontend/build/
+frontend/dist/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE specific
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Coverage reports
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+
+# Pytest
+.pytest_cache/
+
+# VS Code project-level settings
+.vscode/
+
+# Lint, testing
+pytestdebug.log
+
+# macOS system files
+.AppleDouble
+.LSOverride
+
+# Windows system files
+ehthumbs.db
