@@ -1,4 +1,4 @@
-# Taxido 🚖🛵
+# Taxido 🛵
 
 ![Project Status: In Development](https://img.shields.io/badge/status-in_development-yellowgreen)
 
@@ -48,6 +48,21 @@ This project is under **active development**. More features like:
 ...are planned for future updates.
 
 ---
+---
+
+## 🔒 License & Usage
+
+© 2025 **Gaurav Bisht**. All Rights Reserved.
+
+This repository and its contents are proprietary. **Cloning, copying, redistributing, or using any part of this code without explicit written permission is strictly prohibited.**
+
+Any unauthorized use will be considered a **violation of intellectual property rights**, and action will be taken under applicable laws, including GitHub’s DMCA policy.
+
+### 📬 Contact for Permissions
+- **Gaurav Bisht**
+- GitHub: [@gauravvbisht18](https://github.com/gauravvbisht18)
+- Email: [gauravvbisht18@gmail.com]
+
 
 
 
