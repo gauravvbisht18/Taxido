@@ -1,26 +1,33 @@
-# Taxido 🛵
+# Taxido 🛵: Scooter & Bike Rentals
 
-![Project Status: In Development](https://img.shields.io/badge/status-in_development-yellowgreen)
+[![Project Status: In Development](https://img.shields.io/badge/status-in_development-yellowgreen)](https://github.com/gauravvbisht18/Taxido)
+[![Deployment: Vercel](https://img.shields.io/badge/deployment-Vercel-black?logo=vercel)](https://taxido.vercel.app/)
+[![Backend: Render](https://img.shields.io/badge/backend-Render-46E3B7?logo=render)](https://taxido-backend.onrender.com/)
 
----
-
-## 📌 What is Taxido?
-
-**Taxido** is a **one-stop rental platform** for tourists visiting **hilly regions like Nainital**, connecting them with **local scooter and bike renters**.
-
-It offers a secure, transparent, and streamlined process for:
-- 🚲 **Scooter & Bike Listings** by local renters
-- 🛡️ **Secure User Authentication** with **JWT Tokenization**
-- 📄 **Document Uploads** (Aadhar, Scooter Image, Petrol Meter Level)
-- ✅ **Admin Verification** for authentic rentals
-- 🤝 **Rental Requests** from tourists with approval flows
-- ⚖️ **Dispute Resolution Mechanism** between renters and tourists via admin oversight
-
-> This system ensures safety, transparency, and smooth communication between both parties.
+A full-stack rental platform connecting tourists with local scooter and bike renters in scenic regions like Nainital. Taxido provides a secure, transparent, and streamlined rental experience from start to finish.
 
 ---
 
-## 🎥 Demo Video : (https://drive.google.com/file/d/1wvAfu7YIZb7wcwZbG3OU7N38LPGIOXCu/view?usp=drive_link)
+## 🚀 Live Demo & Video
+
+* **Live Application:** **[taxido.vercel.app](https://taxido.vercel.app/)**
+* **Video Walkthrough:** **[Watch the Demo on Google Drive](https://drive.google.com/file/d/1wvAfu7YIZb7wcwZbG3OU7N38LPGIOXCu/view?usp=drive_link)**
+
+
+
+---
+
+## ✨ Key Features
+
+* **User Authentication:** Secure registration and login system using **JWT (JSON Web Tokens)**.
+* **Dynamic Listings:** Local renters can create, update, and manage their scooter and bike listings.
+* **Document Verification:** Robust file upload system for identity (Aadhar), vehicle photos, and fuel levels.
+* **Admin Dashboard:** Centralized admin panel to verify new users, approve listings, and resolve disputes.
+* **Rental Workflow:** Seamless rental request and approval system for tourists.
+* **Dispute Resolution:** Admin-moderated system to handle issues between renters and tourists.
+
+---
+
 
 ## 🛠️ Technologies Used
 
