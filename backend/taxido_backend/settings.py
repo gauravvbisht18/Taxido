@@ -1,18 +1,29 @@
 import os
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-your-secret-key-here'
+# ==============================================================================
+# CORE DEPLOYMENT SETTINGS
+# ==============================================================================
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Read the secret key from an environment variable for security
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
+# Read the DEBUG value from an environment variable; defaults to False for production
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+
+# Add your live Render URL here after deployment
+# Example: ALLOWED_HOSTS = ['taxido-backend.onrender.com']
 ALLOWED_HOSTS = []
 
-# Application definition
+
+# ==============================================================================
+# APPLICATION DEFINITION
+# ==============================================================================
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -30,8 +41,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware', # CORS must come before CommonMiddleware
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Added for serving static files
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -60,49 +72,80 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'taxido_backend.wsgi.application'
 
-# Database
+
+# ==============================================================================
+# DATABASE
+# ==============================================================================
+
+# Uses the DATABASE_URL from Render, but falls back to SQLite for local development
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3'),
+        conn_max_age=600
+    )
 }
 
-# Password validation
+
+# ==============================================================================
+# PASSWORD VALIDATION
+# ==============================================================================
+
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# Internationalization
+
+# ==============================================================================
+# INTERNATIONALIZATION
+# ==============================================================================
+
 LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'Asia/Kolkata'
+TIME_ZONE = 'UTC' # Changed to UTC, which is a server best practice
 USE_I18N = True
 USE_TZ = True
 
-# Static files
-STATIC_URL = '/static/'
 
-# Media files (file/image uploads)
+# ==============================================================================
+# STATIC & MEDIA FILES
+# ==============================================================================
+
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+# This is where Django will collect all static files for production
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# This tells Django to use WhiteNoise to serve static files efficiently
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Media files (user-uploaded content)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# CORS settings
+
+# ==============================================================================
+# SECURITY & CORS SETTINGS
+# ==============================================================================
+
+# Add your live Vercel URL here after deployment
+# Example: CORS_ALLOWED_ORIGINS = ['https://taxido.vercel.app']
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
 
-# REST Framework defaults
+# This is a required security setting for production
+# Add your live Vercel and Render URLs here after deployment
+# Example: CSRF_TRUSTED_ORIGINS = ['https://taxido.vercel.app', 'https://taxido-backend.onrender.com']
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:3000',
+]
+
+
+# ==============================================================================
+# DJANGO REST FRAMEWORK
+# ==============================================================================
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -110,8 +153,5 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-       
-
     ]
 }
-
