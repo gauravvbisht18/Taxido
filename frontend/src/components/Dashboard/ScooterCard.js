@@ -5,7 +5,7 @@ const ScooterCard = ({ scooter, onRent, user }) => {
     <div className="scooter-card">
       {scooter.photo ? (
         <img 
-          src={`http://127.0.0.1:8000${scooter.photo}`}
+          src={`${process.env.REACT_APP_API_URL}${scooter.photo}`}
           alt={scooter.model}
           className="scooter-image"
         />

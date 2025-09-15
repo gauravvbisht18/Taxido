@@ -42,7 +42,7 @@ const Register = () => {
     setError('');
 
     try {
-      await axios.post('http://localhost:8000/api/auth/register/', formData);
+      await axios.post('${process.env.REACT_APP_API_URL}/api/auth/register/', formData);
       setSuccess(true);
       setTimeout(() => navigate('/login'), 2000);
     } catch (error) {

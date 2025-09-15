@@ -25,18 +25,16 @@ const Login = ({ setUser }) => {
   setError('');
 
   try {
-    const response = await axios.post('http://localhost:8000/api/token/', {
-
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/token/`, {
       username: formData.username,
       password: formData.password,
-       
     });
 
     localStorage.setItem('token', response.data.access); 
     localStorage.setItem('refresh_token', response.data.refresh);
-     const userInfo = { username: formData.username };
-  localStorage.setItem('user', JSON.stringify(userInfo));
-  setUser(userInfo);
+    const userInfo = { username: formData.username };
+    localStorage.setItem('user', JSON.stringify(userInfo));
+    setUser(userInfo);
 
     
    
@@ -385,10 +383,11 @@ const Login = ({ setUser }) => {
 
         input:focus::placeholder {
           color: #d1d5db;
-        }
+        input:focus::placeholder {
+          color: #d1d5db;
+        }>
       `}</style>
     </div>
   );
-};
-
+}; 
 export default Login;

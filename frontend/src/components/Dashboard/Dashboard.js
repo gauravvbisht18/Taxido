@@ -16,7 +16,7 @@ const Dashboard = ({ user }) => {
 
   const fetchRentals = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/rentals/');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/rentals/`);
       setRentals(response.data);
     } catch (error) {
       console.error('Error fetching rentals:', error);
@@ -39,11 +39,11 @@ const Dashboard = ({ user }) => {
     const token = localStorage.getItem('token');
 
     try {
-      await axios.post('http://localhost:8000/api/upload-documents/', formData, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/upload-documents/`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Authorization': `Bearer ${token}`
-        }
+          'Authorization': `Bearer ${token}`,
+        },
       });
       alert('Documents uploaded successfully!');
     } catch (error) {

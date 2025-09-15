@@ -10,23 +10,22 @@ const RentScooter = ({ user }) => {
     fetchScooters();
   }, []);
 
- const fetchScooters = async () => {
-  try {
-    const token = localStorage.getItem('token');  // Assuming you saved token at login
-    const response = await axios.get('http://localhost:8000/api/scooters/', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    console.log('Fetched scooters:', response.data);
-    setScooters(response.data);
-  } catch (error) {
-    console.error('Error fetching scooters:', error);
-  } finally {
-    setLoading(false);
-  }
-};
-
+  const fetchScooters = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/scooters/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log('Fetched scooters:', response.data);
+      setScooters(response.data);
+    } catch (error) {
+      console.error('Error fetching scooters:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleRent = async (scooterId, rentPrice) => {
     try {
@@ -35,10 +34,10 @@ const RentScooter = ({ user }) => {
         renter: user.id,
         start_date: new Date().toISOString(),
         end_date: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
-        total_amount: rentPrice
+        total_amount: rentPrice,
       };
 
-      await axios.post('http://localhost:8000/api/rentals/', rentalData);
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/rentals/`, rentalData);
       alert('Scooter booked successfully!');
       fetchScooters();
     } catch (error) {
